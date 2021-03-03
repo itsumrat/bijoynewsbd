@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  postgres_data:
+      driver: local
+
+services:
+  db:
+      image: postgres
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: bijoynews
+        POSTGRES_USER: bijoynews
+        POSTGRES_PASSWORD: bijoynews
+      ports:
+        - 5432:5432
+  adminer:
+    container_name: bijoynews_adminer
+    image: adminer
+    ports:
+      - 8080:8080

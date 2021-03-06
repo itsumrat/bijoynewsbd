@@ -31,7 +31,8 @@ import {StoryEntity} from "./story/model/story.entity";
     ),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'bijoynews-database.cnwhvy4mvhdr.ap-southeast-1.rds.amazonaws.com',
+      // host: 'localhost',
       port: 5432,
       username: 'bijoynews',
       password: 'bijoynews',

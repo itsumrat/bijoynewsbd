@@ -7,6 +7,8 @@ import * as yup from 'yup';
 import httpClient from "../../../src/utils/httpClient";
 import {ToasterError, ToasterSuccess} from "../../../src/utils/statusMessage";
 import { Modal } from "react-bootstrap";
+import AdminLayout from "../../../components/layouts/adminLaout";
+import Head from "../../../components/head";
 
 interface Props {
     categories: any[];
@@ -113,99 +115,104 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
 
 
     return (
-        <main className="page-content">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="page-title">
-                            <h1>Categories</h1>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-8">
-                                <div className="category-list">
-                                    <table id="category-list" className="table table-striped table-bordered"
-                                           style={{width: '100%'}}>
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {
-                                            categoriesData.map((category, i)=>{
-                                                return(
-                                                    <tr key={i}>
-                                                        <td>{category.name}</td>
-                                                        <td className="d-flex justify-content-around">
-                                                            {/* TODO onclick open modal and edit category*/}
-                                                            <AiFillEdit onClick={()=>{
-                                                                setSelectedCategory(category);
-                                                                setShow(true);
-                                                            }} style={{cursor: 'pointer'}} />
-                                                            <BsTrash onClick={()=>handleDelete(category.id)} style={{cursor: 'pointer'}}/>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })
-                                        }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="new-category">
-                                    <h6>Create New Category</h6>
-                                    <form onSubmit={formik.handleSubmit}>
-                                       <div className="form-group" style={{height: '5rem'}}>
-                                           <label className="mt-2 font-weight-bold">Name</label>
-                                           <input
-                                               type="text"
-                                               className="form-control"
-                                               name="name"
-                                               placeholder="Category"
-                                               onChange={formik.handleChange}
-                                               value={formik.values.name}
-                                           />
-                                           <small className="text-danger">{formik.errors['name']}</small>
-                                       </div>
-                                        <button type="submit" className="btn btn-primary btn-main mt-3">save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+       <div>
+           <Head/>
+           <main className="page-content">
+               <div className="container-fluid">
+                   <div className="row">
+                       <div className="col-12">
+                           <div className="page-title">
+                               <h1>Categories</h1>
+                           </div>
+                           <div className="row">
+                               <div className="col-lg-8">
+                                   <div className="category-list">
+                                       <table id="category-list" className="table table-striped table-bordered"
+                                              style={{width: '100%'}}>
+                                           <thead>
+                                           <tr>
+                                               <th>Name</th>
+                                               <th>Actions</th>
+                                           </tr>
+                                           </thead>
+                                           <tbody>
+                                           {
+                                               categoriesData.map((category, i)=>{
+                                                   return(
+                                                       <tr key={i}>
+                                                           <td>{category.name}</td>
+                                                           <td className="d-flex justify-content-around">
+                                                               {/* TODO onclick open modal and edit category*/}
+                                                               <AiFillEdit onClick={()=>{
+                                                                   setSelectedCategory(category);
+                                                                   setShow(true);
+                                                               }} style={{cursor: 'pointer'}} />
+                                                               <BsTrash onClick={()=>handleDelete(category.id)} style={{cursor: 'pointer'}}/>
+                                                           </td>
+                                                       </tr>
+                                                   )
+                                               })
+                                           }
+                                           </tbody>
+                                       </table>
+                                   </div>
+                               </div>
+                               <div className="col-lg-4">
+                                   <div className="new-category">
+                                       <h6>Create New Category</h6>
+                                       <form onSubmit={formik.handleSubmit}>
+                                           <div className="form-group" style={{height: '5rem'}}>
+                                               <label className="mt-2 font-weight-bold">Name</label>
+                                               <input
+                                                   type="text"
+                                                   className="form-control"
+                                                   name="name"
+                                                   placeholder="Category"
+                                                   onChange={formik.handleChange}
+                                                   value={formik.values.name}
+                                               />
+                                               <small className="text-danger">{formik.errors['name']}</small>
+                                           </div>
+                                           <button type="submit" className="btn btn-primary btn-main mt-3">save</button>
+                                       </form>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+               <Modal show={show} onHide={handleClose}>
+                   <Modal.Header closeButton>
+                       <Modal.Title>Modal heading</Modal.Title>
+                   </Modal.Header>
+                   <Modal.Body>
 
-                    <form onSubmit={CategoryEditFormik.handleSubmit}>
-                        <div className="form-group" style={{height: '5rem'}}>
-                            <label className="mt-2 font-weight-bold">Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="name"
-                                placeholder="Category"
-                                onChange={CategoryEditFormik.handleChange}
-                                value={CategoryEditFormik.values.name}
-                            />
-                            <small className="text-danger">{CategoryEditFormik.errors['name']}</small>
-                        </div>
-                        <button type="button" className="btn btn-outline-danger btn-main mr-3">close</button>
-                        <button type="submit" className="btn btn-primary btn-main ">save</button>
-                    </form>
-                </Modal.Body>
-            </Modal>
-        </main>
+                       <form onSubmit={CategoryEditFormik.handleSubmit}>
+                           <div className="form-group" style={{height: '5rem'}}>
+                               <label className="mt-2 font-weight-bold">Name</label>
+                               <input
+                                   type="text"
+                                   className="form-control"
+                                   name="name"
+                                   placeholder="Category"
+                                   onChange={CategoryEditFormik.handleChange}
+                                   value={CategoryEditFormik.values.name}
+                               />
+                               <small className="text-danger">{CategoryEditFormik.errors['name']}</small>
+                           </div>
+                           <button type="button" className="btn btn-outline-danger btn-main mr-3">close</button>
+                           <button type="submit" className="btn btn-primary btn-main ">save</button>
+                       </form>
+                   </Modal.Body>
+               </Modal>
+           </main>
+       </div>
     );
 };
 
+// @ts-ignore
+AdminCategoriesPage.Layout = AdminLayout;
 export async function getServerSideProps(ctx: NextPageContext) {
     const props: Props = {
         source: 'server',

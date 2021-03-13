@@ -12,6 +12,7 @@
     "start": "cross-env NODE_ENV=production node .next/production-server/src/main.js"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.5.0",
     "@nestjs/common": "^7.6.5",
     "@nestjs/core": "^7.6.5",
     "@nestjs/platform-express": "^7.6.5",
@@ -21,6 +22,7 @@
     "@types/moment": "^2.13.0",
     "@types/react-select": "^4.0.13",
     "@types/react-toastify": "^4.1.0",
+    "antd": "^4.13.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "cross-env": "^6.0.3",
@@ -36,6 +38,7 @@
     "react-dom": "17",
     "react-icons": "^4.2.0",
     "react-select": "^4.1.0",
+    "react-share": "^4.4.0",
     "react-toastify": "^7.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.2",

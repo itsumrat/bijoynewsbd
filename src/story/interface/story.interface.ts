@@ -12,5 +12,5 @@ export interface StoryInterface {
     featuredImg?: string;
     publishedDate?: Date;
     isPublished?: boolean;
-    categories?: CategoryEntry[];
+    category: CategoryEntry;
 }

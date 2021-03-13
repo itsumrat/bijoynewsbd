@@ -1,7 +1,7 @@
 import {
     Column,
     Entity,
-    ManyToMany,
+    OneToMany,
 } from 'typeorm';
 import {BaseEntity} from "../../utils/model/base.entity";
 import {StoryInterface} from "../../story/interface/story.interface";
@@ -12,9 +12,9 @@ export class CategoryEntity extends  BaseEntity{
     @Column()
     name: string;
 
-    @ManyToMany(
+    @OneToMany(
         () => StoryEntity,
-        (story: StoryInterface) => story.categories,
+        (story: StoryInterface) => story.category,
     )
     public stories: StoryInterface[];
 

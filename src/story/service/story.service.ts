@@ -17,7 +17,7 @@ export class StoryService {
     ){}
 
     getStories(){
-        return this.storyEntityRepository.find({relations: ['categories']});
+        return this.storyEntityRepository.find({relations: ['category']});
     }
 
     findOne(id: number){
@@ -25,7 +25,7 @@ export class StoryService {
     }
 
     findBySlug(slug: string){
-        return this.storyEntityRepository.findOne({slug}, {relations: ['categories']})
+        return this.storyEntityRepository.findOne({slug}, {relations: ['category']})
     }
 
     create(body: StoryInterface){

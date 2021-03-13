@@ -12,48 +12,47 @@ export class AppController {
   @Get()
   public async index() {
     let stories: any = [];
+    let categories: any = [];
     await this.storyService.getStories()
         .then(res=>{
           stories = res;
         });
-    return { stories };
+    await this.categoryService.findAll()
+        .then(cats=>{
+            categories = cats;
+        })
+    return { stories, categories };
   }
 
-  @Render('admin/new-story')
-  @Get('new-story')
-  public async NewStory() {
-      let categories: any = [];
-      await  this.categoryService.findAll()
-          .then(r=>{
-              categories = r;
-          })
-      return {
-          categories
-      };
-  }
 
   @Render('category')
   @Get('news/:category')
-  public Category() {
-    return {};
+  public async Category(@Param('category') cat: string) {
+      let category: any = null;
+      await this.categoryService.findOne(cat)
+          .then((res: any)=>{
+              category = res;
+          })
+    return {
+          category: category
+    };
   }
 
   @Render('[newsCategory]/[newsSlug]')
   @Get('news/:category/:slug')
   public async News(@Param() param: any) {
-    console.log(param)
     let story: any={};
-    let stories: any = [];
+    let category: any = {};
     await this.storyService.findBySlug(param.slug).then(r=>{
       story = r;
     });
-    await this.storyService.getStories()
-        .then(res=>{
-          stories = res;
+    await this.categoryService.findOne(param.category)
+        .then((res: any)=>{
+            category = res;
         });
    return {
       story,
-     stories
+       category
    };
   }
 }

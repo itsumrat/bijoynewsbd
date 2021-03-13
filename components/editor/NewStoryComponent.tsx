@@ -20,6 +20,7 @@ const NewStoryComponent: React.FC<any> = ({categories}) => {
             title: '',
             description: '',
             body: '',
+            category: null,
         },
         onSubmit: values => {
            console.log(values)
@@ -84,17 +85,14 @@ const NewStoryComponent: React.FC<any> = ({categories}) => {
                                         <label>Category</label>
                                         <Select
                                             closeMenuOnSelect={false}
-                                            isMulti
+                                            isMulti={false}
                                             options={categoryOptions}
-                                            onChange={(categories: { id: number; label: string; }[]) => {
-                                                formikStory.setFieldValue('categories', categories && categories.map((cat: { id: number; label: string; }) => {
-                                                    return {
-                                                        id: cat.id,
-                                                        name: cat.label,
-                                                        value: cat.id,
-                                                        label: cat.label
-                                                    }
-                                                }))
+                                            onChange={(category: { id: number; label: string; }) => {
+                                                console.log(category)
+                                                formikStory.setFieldValue('category', {
+                                                    id: category.id,
+                                                    name: category.label
+                                                });
                                             }}
                                         />
                                     </div>

@@ -1,6 +1,6 @@
 import {
     Column,
-    Entity, ManyToMany, JoinTable,
+    Entity, ManyToMany, JoinTable, ManyToOne,
 
 } from 'typeorm';
 import {BaseEntity} from "../../utils/model/base.entity";
@@ -31,13 +31,13 @@ export class StoryEntity extends BaseEntity{
     @Column('simple-array', { default: [] })
     tags: string[];
 
-    @Column({ nullable: true })
+    @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
     publishedDate: Date;
 
     @Column({ nullable: false, default: false })
     isPublished: boolean;
 
-    @ManyToMany(
+    @ManyToOne(
         () => CategoryEntity,
         (category: CategoryEntry) => category.stories,
         {
@@ -45,6 +45,6 @@ export class StoryEntity extends BaseEntity{
         },
     )
     @JoinTable()
-    categories: CategoryEntry[];
+    category: CategoryEntry;
 
 }

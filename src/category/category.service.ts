@@ -10,6 +10,11 @@ export class CategoryService {
     ){}
 
 
+    findOne(name: string): any{
+        return this.categoryEntityRepository.findOne({name},{
+            relations: ['stories'],
+        });
+    }
     create (body: any): any{
 
        return  this.categoryEntityRepository.save(body)
@@ -24,7 +29,7 @@ export class CategoryService {
     }
 
     findAll(){
-     return this.categoryEntityRepository.find();
+     return this.categoryEntityRepository.find({relations:['stories']});
 
     }
 }

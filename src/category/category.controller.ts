@@ -5,6 +5,10 @@ import {CategoryService} from "./category.service";
 export class CategoryController {
     constructor(private categoryService: CategoryService){};
 
+    @Get()
+    public findAll(){
+        return this.categoryService.findAll();
+    }
     @Post()
     public  createCategory(@Body() body: any){
         return this.categoryService.create(body);

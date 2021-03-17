@@ -30,13 +30,13 @@ const Head = (props) => (
         <link href="/static/css/font-awesome-all.min.css" rel="stylesheet"/>
         <link
             rel="preload"
-            href="/static/fonts/Merriweather.ttf"
+            href="/static/fonts/kalpurush%20ANSI.ttf"
             as="font"
             crossOrigin=""
         />
         <link
             rel="preload"
-            href="/static/fonts/Roboto.ttf"
+            href="/static/fonts/SolaimanLipi.ttf"
             as="font"
             crossOrigin=""
         />

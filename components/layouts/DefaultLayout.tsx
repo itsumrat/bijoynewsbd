@@ -41,7 +41,9 @@ const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) 
                     </Link>
                 </div>
                 <div>
-                    <a className="btn btn-primary" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                    <Link href='/login'>
+                        <a>Login</a>
+                    </Link>
                 </div>
             </div>
         </header>

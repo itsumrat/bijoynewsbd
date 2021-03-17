@@ -38,6 +38,19 @@ export class AppController {
     };
   }
 
+    @Render('login')
+    @Get('login')
+    private Login(): any{
+        return {};
+    }
+
+    @Render('signup')
+    @Get('signup')
+    private Signup(): any{
+        return {};
+    }
+
+
   @Render('[newsCategory]/[newsSlug]')
   @Get('news/:category/:slug')
   public async News(@Param() param: any) {
@@ -55,4 +68,5 @@ export class AppController {
        category
    };
   }
+
 }

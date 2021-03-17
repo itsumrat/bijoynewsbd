@@ -8,16 +8,27 @@ export class AdminController {
                 private storyService: StoryService,){};
 
 
+    @Render('admin/login')
+    @Get('/login')
+    private Login(): any{
+        return {};
+    }
     @Render('admin/[slug]/edit')
     @Get('/:slug/edit')
     public async EditStory(@Param('slug') slug: string) {
         let story: any = [];
+        let categories: any = [];
+        await  this.categoryService.findAll()
+            .then(r=>{
+                categories = r;
+            })
         await  this.storyService.findBySlug(slug)
             .then(r=>{
                 story = r;
             })
         return {
-            story
+            story,
+            categories
         };
     }
 

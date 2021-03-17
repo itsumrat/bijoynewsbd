@@ -1,6 +1,7 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {StoryInterface} from "../interface/story.interface";
 import {StoryService} from "../service/story.service";
+import {FileInterceptor} from "@nestjs/platform-express";
 
 @Controller('stories')
 export class StoryController {
@@ -34,6 +35,11 @@ export class StoryController {
         return this.storyService.deleteOne(id);
     }
 
+    @Post('image/upload')
+    @UseInterceptors(FileInterceptor('file'))
+    async uploadFile(@UploadedFile() file: any): Promise<any> {
+        return await this.storyService.upload(file);
+    }
 
 
 }

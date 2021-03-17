@@ -3,6 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="e87618bb-67f4-4383-a1b3-22fa07e7288a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/editor/NewStoryComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/editor/NewStoryComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/head.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/head.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layouts/DefaultLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layouts/DefaultLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/about.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/admin/[slug]/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/admin/[slug]/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/admin/new-story.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/admin/new-story.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin/admin.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin/admin.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/application.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/story/controller/story.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/controller/story.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/story/service/story.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/service/story.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/fonts" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -33,18 +48,18 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/components" />
-      <recent name="$PROJECT_DIR$/components/layouts" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/utils" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/views/admin" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/story/service" />
       <recent name="$PROJECT_DIR$/src/story/controller" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/fonts" />
+      <recent name="$PROJECT_DIR$/static/img" />
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$/components/layouts" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -88,7 +103,12 @@
       <workItem from="1615040036939" duration="6116000" />
       <workItem from="1615397351276" duration="6687000" />
       <workItem from="1615474621219" duration="19196000" />
-      <workItem from="1615630702514" duration="645000" />
+      <workItem from="1615630702514" duration="949000" />
+      <workItem from="1615639170655" duration="6496000" />
+      <workItem from="1615745526584" duration="4186000" />
+      <workItem from="1615832322972" duration="599000" />
+      <workItem from="1615917467731" duration="11205000" />
+      <workItem from="1615982064045" duration="781000" />
     </task>
     <servers />
   </component>
@@ -98,6 +118,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -106,6 +151,11 @@
           </value>
         </entry>
       </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
     </option>
   </component>
 </project>

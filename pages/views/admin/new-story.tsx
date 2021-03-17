@@ -13,7 +13,7 @@ const NewStory: React.FC<any> = ({categories}) => {
 
     return(
         <div>
-            <NewStoryComponent categories={categories}/>
+            <NewStoryComponent categories={categories} isEdit={false}/>
         </div>
     );
 }

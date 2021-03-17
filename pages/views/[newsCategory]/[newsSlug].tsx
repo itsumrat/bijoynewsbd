@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {NextPage} from "next";
 import {
     EmailShareButton,
@@ -7,13 +7,31 @@ import {
     TwitterShareButton,
 
 } from "react-share";
+import {Drawer, Button, Avatar, Tooltip, Comment, Form, Input} from 'antd';
 import {createMarkup} from '../../../src/utils/createMarkup';
 import moment from "moment";
 import StoryCard from "../../../components/story/StoryCard";
 import Link from "next/link";
 import DefaultLayout from "../../../components/layouts/DefaultLayout";
 import {constants}  from '../../../constants';
+
+const layout = {
+    labelCol: { span: 24 },
+    wrapperCol: { span: 24 },
+};
+
 const SingleNews: NextPage<any> = ({story, category}) => {
+    const [visible, setVisible] = useState(false);
+    const showDrawer = () => {
+        setVisible(true);
+    };
+    const onClose = () => {
+        setVisible(false);
+    };
+
+    const onFinish = (values: any) => {
+        console.log(values);
+    };
     const stories = category.stories;
 
     return (
@@ -32,7 +50,9 @@ const SingleNews: NextPage<any> = ({story, category}) => {
                 </div>
                 <div className="offset-lg-1 col-lg-3">
                     <div className="full-post-sidebar">
-                        <a href="#" className="comments"><span className="material-icons">comment</span>3 Comments</a>
+                        <Button onClick={showDrawer} type="link" className="comments">
+                            3 Comments
+                        </Button>
                         <div className="social-share">
                             <h6>Share the article:</h6>
                             <ul>
@@ -88,6 +108,51 @@ const SingleNews: NextPage<any> = ({story, category}) => {
 
 
             </div>
+            <Drawer
+                title="Comments"
+                placement="right"
+                closable={false}
+                onClose={onClose}
+                visible={visible}
+                width='40vw'
+            >
+                <Form {...layout} name="nest-messages" onFinish={onFinish}>
+
+                    <Form.Item name='comment' label="Comment"
+                               rules={[
+                                   { required: true, message: 'Please input your comment!' },
+                                   {max: 500, message: 'Can not be more than 500 characters'}
+                                   ]}>
+                        <Input.TextArea  />
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ ...layout.wrapperCol }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+                <Comment
+                    author={<a>Han Solo</a>}
+                    avatar={
+                        <Avatar
+                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                            alt="Han Solo"
+                        />
+                    }
+                    content={
+                        <p>
+                            We supply a series of design principles, practical patterns and high quality design
+                            resources (Sketch and Axure), to help people create their product prototypes beautifully
+                            and efficiently.
+                        </p>
+                    }
+                    datetime={
+                        <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
+                            <span>{moment().fromNow()}</span>
+                        </Tooltip>
+                    }
+                />
+            </Drawer>
         </div>
     );
 };

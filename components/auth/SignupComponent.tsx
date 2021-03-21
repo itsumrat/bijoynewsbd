@@ -3,10 +3,12 @@ import {
     Form,
     Input,
     Checkbox,
-    Button, Row, Col,
+    Button, Row, Col, message,
 
 } from 'antd';
 import Link from 'next/link';
+import httpClient from "../../src/utils/httpClient";
+import {useRouter} from "next/router";
 
 
 const formItemLayout = {
@@ -34,9 +36,16 @@ const tailFormItemLayout = {
 
 const RegistrationForm = () => {
     const [form] = Form.useForm();
-
+    const router = useRouter()
     const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
+        httpClient.post('/auth/signup', values)
+            .then(res=>{
+                message.success("Successfully signup");
+                router.push('/login');
+            })
+            .catch((err: any)=>{
+                message.error("Couldn't signup");
+            })
     };
 
 
@@ -111,8 +120,8 @@ const RegistrationForm = () => {
                </Form.Item>
 
                <Form.Item
-                   name="nickname"
-                   label="Nickname"
+                   name="name"
+                   label="name"
                    tooltip="What do you want others to call you?"
                    rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
                >

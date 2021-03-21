@@ -1,6 +1,8 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
+import {Form, Input, Button, Checkbox, Row, Col, message} from 'antd';
 import Link from "next/link";
+import httpClient from "../../src/utils/httpClient";
+import {useRouter} from "next/router";
 
 const layout = {
     labelCol: { span: 8 },
@@ -10,9 +12,17 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 const LoginPage = () => {
-
+    const router = useRouter();
     const onFinish = (values: any) => {
-        console.log('Success:', values);
+        httpClient.post('/auth/login', values)
+            .then(res=>{
+                localStorage.setItem('access_token', res.data.access_token);
+                message.success("Successfully login");
+                router.push('/');
+            })
+            .catch((err: any)=>{
+                message.error("Couldn't login");
+            })
     };
 
     const onFinishFailed = (errorInfo: any) => {

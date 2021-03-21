@@ -6,6 +6,8 @@ import {
 import {BaseEntity} from "../../utils/model/base.entity";
 import {CategoryEntity} from "../../category/model/category.entity";
 import {CategoryEntry} from "../../category/interface/category.entry";
+import {UserInterface} from "../../user/interface/user.interface";
+import {UserEntity} from "../../user/model/user.entity";
 
 @Entity('story')
 export class StoryEntity extends BaseEntity{
@@ -36,6 +38,9 @@ export class StoryEntity extends BaseEntity{
 
     @Column({ nullable: false, default: false })
     isPublished: boolean;
+
+    @ManyToOne((type) => UserEntity, (user: UserInterface) => user.stories)
+    author: UserEntity;
 
     @ManyToOne(
         () => CategoryEntity,

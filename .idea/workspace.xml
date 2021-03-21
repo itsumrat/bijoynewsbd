@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e87618bb-67f4-4383-a1b3-22fa07e7288a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/auth/LoginComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/auth/LoginComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/auth/SignupComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/auth/SignupComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/home.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/application.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/story/interface/story.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/interface/story.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/story/model/story.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/model/story.entity.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +29,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/fonts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/auth" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -34,18 +43,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/user/service" />
+      <recent name="$PROJECT_DIR$/src/user/controller" />
       <recent name="$PROJECT_DIR$/pages/views/admin" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/story/service" />
-      <recent name="$PROJECT_DIR$/src/story/controller" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/auth" />
+      <recent name="$PROJECT_DIR$/src/user/model" />
+      <recent name="$PROJECT_DIR$/src/user" />
+      <recent name="$PROJECT_DIR$/src/user/service" />
       <recent name="$PROJECT_DIR$/static/fonts" />
-      <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/components" />
-      <recent name="$PROJECT_DIR$/components/layouts" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -93,7 +102,10 @@
       <workItem from="1615745526584" duration="4186000" />
       <workItem from="1615832322972" duration="599000" />
       <workItem from="1615917467731" duration="11205000" />
-      <workItem from="1615982064045" duration="1137000" />
+      <workItem from="1615982064045" duration="2781000" />
+      <workItem from="1616223808351" duration="2632000" />
+      <workItem from="1616254740807" duration="4157000" />
+      <workItem from="1616342177814" duration="7156000" />
     </task>
     <servers />
   </component>

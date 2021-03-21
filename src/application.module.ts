@@ -16,6 +16,13 @@ import { StoryController } from './story/controller/story.controller';
 import { StoryService } from './story/service/story.service';
 import { StoryModule } from './story/story.module';
 import {StoryEntity} from "./story/model/story.entity";
+import { UserController } from './user/controller/user.controller';
+import { UserService } from './user/service/user.service';
+import { UserModule } from './user/user.module';
+import {UserEntity} from "./user/model/user.entity";
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -41,12 +48,14 @@ import {StoryEntity} from "./story/model/story.entity";
       synchronize: true,
       autoLoadEntities: true,
     }),
-    TypeOrmModule.forFeature([CategoryEntity, StoryEntity]),
+    TypeOrmModule.forFeature([CategoryEntity, StoryEntity, UserEntity]),
     CategoryModule,
     AdminModule,
     StoryModule,
+    UserModule,
+    AuthModule,
   ],
-  controllers: [AppController, BlogController, CategoryController, AdminController, StoryController],
-  providers: [BlogService, CategoryService, AdminService, StoryService],
+  controllers: [AppController, BlogController, CategoryController, AdminController, StoryController, UserController, AuthController],
+  providers: [BlogService, CategoryService, AdminService, StoryService, UserService, AuthService],
 })
 export class AppModule {}

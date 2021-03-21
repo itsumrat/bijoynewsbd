@@ -5,6 +5,7 @@ import Link from "next/link";
 import {StoryInterface} from "../../src/story/interface/story.interface";
 import DefaultLayout, {DefaultLayoutContext} from "../../components/layouts/DefaultLayout";
 import {useContext} from "react";
+import Head from 'components/head';
 
 interface Props {
     stories: StoryInterface[];
@@ -19,6 +20,11 @@ const Home: NextPage<Props> = ({stories}) => {
     console.log(categories)
     return (
         <div>
+            <Head
+                title="Bijoynewsbd"
+                description={'Story teller'}
+                ogImage={'/static/img/logo.png'}
+            />
             <div className="container mt-4">
                 <div className="row">
                     {

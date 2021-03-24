@@ -5,6 +5,6 @@ services:
     container_name: bijoynews
     build: .
     ports:
-      - 3001:3000
+      - 3000:3000
     environment:
       - NODE_ENV=production

@@ -1,6 +1,7 @@
-import {Controller, Get, Param, Render} from '@nestjs/common';
+import {Controller, Get, Param, Render, UseGuards} from '@nestjs/common';
 import {CategoryService} from "../category/category.service";
 import {StoryService} from "../story/service/story.service";
+
 
 @Controller('admin')
 export class AdminController {
@@ -13,6 +14,8 @@ export class AdminController {
     private Login(): any{
         return {};
     }
+
+
     @Render('admin/[slug]/edit')
     @Get('/:slug/edit')
     public async EditStory(@Param('slug') slug: string) {

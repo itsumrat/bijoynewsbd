@@ -16,8 +16,6 @@ export class AuthService {
     }
 
     generateJwt(user: UserInterface){
-        console.log("-090909009---------------------------")
-        console.log(user)
         return this.jwtService.sign(user);
     }
     async validateUser(email: string, pass: string): Promise<any> {
@@ -39,7 +37,7 @@ export class AuthService {
                 name: payload.name,
                 domain: payload.domain,
                 email: payload.email,
-                type: payload.type,
+                role: payload.role,
                 occupation: payload.occupation
             }),
         };

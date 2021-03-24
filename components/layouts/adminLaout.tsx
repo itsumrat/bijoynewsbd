@@ -35,11 +35,11 @@ const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => 
                       </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="3" icon={<UploadOutlined />}>
-                        <Link href="/">
-                            <a>Not yet</a>
-                        </Link>
-                    </Menu.Item>
+                    {/*<Menu.Item key="3" icon={<UploadOutlined />}>*/}
+                    {/*    <Link href="/">*/}
+                    {/*        <a>Not yet</a>*/}
+                    {/*    </Link>*/}
+                    {/*</Menu.Item>*/}
                     <SubMenu key="posts" icon={<MailOutlined />} title="Posts">
                         <Menu.Item key="all-posts" icon={<BookOutlined />}>
                             <Link href="/admin/posts">
@@ -52,7 +52,7 @@ const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => 
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="notifications" icon={<BellOutlined />}>Notifications</Menu.Item>
+                    {/*<Menu.Item key="notifications" icon={<BellOutlined />}>Notifications</Menu.Item>*/}
                 </Menu>
             </Sider>
             <Layout className="site-layout">

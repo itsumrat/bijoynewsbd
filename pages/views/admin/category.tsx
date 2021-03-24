@@ -9,6 +9,9 @@ import {ToasterError, ToasterSuccess} from "../../../src/utils/statusMessage";
 import { Modal } from "react-bootstrap";
 import AdminLayout from "../../../components/layouts/adminLaout";
 import Head from "../../../components/head";
+import {Result, Button} from "antd";
+import isAuthenticated from "../../../src/utils/isAuthenticated";
+import isAdmin from "../../../src/utils/isAdmin";
 
 interface Props {
     categories: any[];
@@ -112,7 +115,18 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
                 ToasterError("Couldn't delete");
             });
     }
-
+    console.log(isAuthenticated());
+    console.log(isAdmin());
+    if(!isAuthenticated() || !isAdmin()){
+        return (
+            <Result
+                status="403"
+                title="403"
+                subTitle="Sorry, you are not authorized to access this page."
+                extra={<Button type="link">Back Home</Button>}
+            />
+        )
+    }
 
     return (
        <div>
@@ -211,8 +225,12 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
     );
 };
 
-// @ts-ignore
-AdminCategoriesPage.Layout = AdminLayout;
+
+if(isAuthenticated() && isAdmin()){
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    AdminCategoriesPage.Layout = AdminLayout;
+}
 export async function getServerSideProps(ctx: NextPageContext) {
     const props: Props = {
         source: 'server',

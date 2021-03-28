@@ -10,7 +10,11 @@ export class UserController {
     }
     @Get(':id')
     findOne(@Param() id: number){
-        return this.userService.findOne(id);
+        return this.userService.findOne(id).then(u=>{
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const {password, ...result} = u;
+            return result;
+        });
     }
 
     @Post()

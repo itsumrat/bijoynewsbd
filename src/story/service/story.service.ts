@@ -7,6 +7,7 @@ import {StoryEntity} from "../model/story.entity";
 
 import { S3 } from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';
+import {UserInterface} from "../../user/interface/user.interface";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
@@ -34,15 +35,14 @@ export class StoryService {
         return this.storyEntityRepository.findOne({slug}, {relations: ['category']})
     }
 
-    create(body: StoryInterface){
+    create(user: UserInterface, body: StoryInterface){
+        body.author = user;
         body.slug = this.generateSlug(body.title);
         return this.storyEntityRepository.save(body);
     }
 
     updateOne(id: number, body: StoryInterface){
-        body.slug = this.generateSlug(body.title);
-        console.log('============');
-        console.log({id, ...body})
+        body.slug = this.generateSlug(body.title)
         return this.storyEntityRepository.save({id, ...body});
     }
 

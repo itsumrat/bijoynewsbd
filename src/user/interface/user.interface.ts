@@ -4,6 +4,7 @@ import {StoryInterface} from "../../story/interface/story.interface";
 export interface UserInterface {
   id?: number;
   name?: string;
+  username?: string;
   domain?: string;
   email?: string;
   password?: string;

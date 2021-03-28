@@ -1,13 +1,17 @@
 import {Controller, Get, Param, Query, Render} from '@nestjs/common';
 import {StoryService} from "./story/service/story.service";
 import {CategoryService} from "./category/category.service";
+import {CommentService} from "./comment/service/comment.service";
+import {IComment} from "./comment/interface/IComment";
 
 @Controller()
 export class AppController {
   constructor(
       private storyService: StoryService,
-      private categoryService: CategoryService
+      private categoryService: CategoryService,
+      private  commentService: CommentService
               ){}
+
   @Render('home')
   @Get()
   public async index() {
@@ -56,6 +60,7 @@ export class AppController {
   public async News(@Param() param: any) {
     let story: any={};
     let category: any = {};
+    let comments: IComment[];
     await this.storyService.findBySlug(param.slug).then(r=>{
       story = r;
     });
@@ -63,9 +68,16 @@ export class AppController {
         .then((res: any)=>{
             category = res;
         });
+    await this.commentService.findAllComments(story.id)
+        .then((re:any)=>{
+            comments = re;
+        })
+
+
    return {
       story,
-       category
+      category,
+      comments
    };
   }
 

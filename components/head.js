@@ -27,7 +27,6 @@ const Head = (props) => (
         <meta property="og:image" content={props.ogImage || defaultOGImage}/>
         <meta property="og:image:width" content="1200"/>
         <meta property="og:image:height" content="630"/>
-        <link href="/static/css/font-awesome-all.min.css" rel="stylesheet"/>
         <link
             rel="preload"
             href="/static/fonts/kalpurush%20ANSI.ttf"

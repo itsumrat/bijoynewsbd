@@ -7,7 +7,7 @@ import {
     TwitterShareButton,
 
 } from "react-share";
-import {Drawer, Button, Avatar, Tooltip, Comment, Form, Input} from 'antd';
+import {Drawer, Button, Avatar, Tooltip, Comment, Form, Input, message} from 'antd';
 import {createMarkup} from '../../../src/utils/createMarkup';
 import moment from "moment";
 import StoryCard from "../../../components/story/StoryCard";
@@ -15,13 +15,20 @@ import Link from "next/link";
 import DefaultLayout from "../../../components/layouts/DefaultLayout";
 import {constants}  from '../../../constants';
 import Head from "../../../components/head";
+import {IComment} from "../../../src/comment/interface/IComment";
+import httpClient from "../../../src/utils/httpClient";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons/lib";
 
 const layout = {
     labelCol: { span: 24 },
     wrapperCol: { span: 24 },
 };
 
-const SingleNews: NextPage<any> = ({story, category}) => {
+const SingleNews: NextPage<any> = ({story, category, comments}) => {
+    const [tempComments, setTempComments] = useState(comments);
+    const [selectedComment, setSelectedComment] = useState(null);
+    const [editComment, setEditComment] = useState(false);
+    const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
     const showDrawer = () => {
         setVisible(true);
@@ -30,9 +37,50 @@ const SingleNews: NextPage<any> = ({story, category}) => {
         setVisible(false);
     };
 
+
     const onFinish = (values: any) => {
-        console.log(values);
+     if(editComment){
+
+         httpClient.put(`/comments/${selectedComment.id}`, {
+             ...values, id: selectedComment.id, story: {id: story.id}
+         })
+             .then(r=>{
+                 setTempComments((prevState: IComment[])=>{
+                     const ind = prevState.findIndex(v => v.id === selectedComment.id);
+                     prevState[ind].message = r.data.message;
+                     return prevState;
+                 })
+                 setEditComment(false);
+                 message.success("Successfully updated")
+                 form.resetFields();
+             });
+     }else {
+         httpClient.post('/comments', {
+             ...values, story: {id: story.id}
+         })
+             .then(r=>{
+                 setTempComments((prevState: IComment[])=>{
+                     return [...prevState, r.data];
+                 });
+                 form.resetFields();
+             });
+     }
     };
+
+    const deleteComment = (id: number) =>{
+        httpClient.delete(`/comments/${id}`)
+            .then((re: any)=>{
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    setTempComments((prevState: IComment[])=>{
+                        return prevState.filter(comment => comment.id !== id);;
+                    });
+
+                message.success("Comment deleted")
+            })
+            .catch(err=>{
+                message.error("Couldn't delete")
+            })
+    }
     const stories = category.stories;
 
     return (
@@ -59,7 +107,7 @@ const SingleNews: NextPage<any> = ({story, category}) => {
                     <div className="offset-lg-1 col-lg-3">
                         <div className="full-post-sidebar">
                             <Button onClick={showDrawer} type="link" className="comments">
-                                3 Comments
+                                {`${tempComments.length} comments`}
                             </Button>
                             <div className="social-share">
                                 <h6>Share the article:</h6>
@@ -124,13 +172,16 @@ const SingleNews: NextPage<any> = ({story, category}) => {
                     visible={visible}
                     width='40vw'
                 >
-                    <Form {...layout} name="nest-messages" onFinish={onFinish}>
+                    <Form form={form} {...layout} name="nest-messages" onFinish={onFinish}>
 
-                        <Form.Item name='comment' label="Comment"
-                                   rules={[
-                                       { required: true, message: 'Please input your comment!' },
-                                       {max: 500, message: 'Can not be more than 500 characters'}
-                                   ]}>
+                        <Form.Item
+                            name='message'
+                            label="Comment"
+
+                           rules={[
+                               { required: true, message: 'Please input your comment!' },
+                               {max: 500, message: 'Can not be more than 500 characters'}
+                           ]}>
                             <Input.TextArea  />
                         </Form.Item>
                         <Form.Item wrapperCol={{ ...layout.wrapperCol }}>
@@ -139,28 +190,44 @@ const SingleNews: NextPage<any> = ({story, category}) => {
                             </Button>
                         </Form.Item>
                     </Form>
-                    <Comment
-                        author={<a>Han Solo</a>}
-                        avatar={
-                            <Avatar
-                                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                                alt="Han Solo"
-                            />
-                        }
-                        content={
-                            <p>
-                                We supply a series of design principles, practical patterns and high quality design
-                                resources (Sketch and Axure), to help people create their product prototypes beautifully
-                                and efficiently.
-                            </p>
-                        }
-                        datetime={
-                            <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-                                <span>{moment().fromNow()}</span>
-                            </Tooltip>
-                        }
-                    />
+                    {
+                        tempComments.map((com: IComment,i: number)=>{
+                            return(
+                                <Comment
+                                    key={i}
+                                    author={<a>{com.author.name}</a>}
+                                    avatar={
+                                        <Avatar
+                                            src={com.author.profileImage || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}
+                                            alt={com.author.name}
+                                        />
+                                    }
+                                    content={
+                                        <div className="d-flex flex-column">
+                                            <p>
+                                                {com.message}
+                                            </p>
+                                            <div className="d-flex">
+                                                <EditOutlined onClick={()=>{
+                                                    setSelectedComment(com);
+                                                    form.setFieldsValue({message: com.message})
+                                                    setEditComment(true);
+                                                }} className="mr-4"/>
+                                                <DeleteOutlined onClick={()=>deleteComment(com.id)} />
+                                            </div>
+                                        </div>
+                                    }
+                                    datetime={
+                                        <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
+                                            <span>{moment().fromNow()}</span>
+                                        </Tooltip>
+                                    }
+                                />
+                            )
+                        })
+                    }
                 </Drawer>
+
             </div>
         </div>
     );
@@ -175,7 +242,8 @@ export function getServerSideProps(ctx: any) {
     return {
         props: {
             story: JSON.parse(JSON.stringify(ctx.query.story)),
-            category: JSON.parse(JSON.stringify(ctx.query.category))
+            category: JSON.parse(JSON.stringify(ctx.query.category)),
+            comments: JSON.parse(JSON.stringify(ctx.query.comments))
         }
     };
 }

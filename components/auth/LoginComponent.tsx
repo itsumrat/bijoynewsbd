@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Form, Input, Button, Checkbox, Row, Col, message} from 'antd';
 import Link from "next/link";
 import httpClient from "../../src/utils/httpClient";
 import {useRouter} from "next/router";
+import {ProfileContext} from "../../context/ProfileContext";
 
 const layout = {
     labelCol: { span: 8 },
@@ -13,14 +14,23 @@ const tailLayout = {
 };
 const LoginPage = () => {
     const router = useRouter();
+    const profileCtx = useContext(ProfileContext);
+
     const onFinish = (values: any) => {
         httpClient.post('/auth/login', values)
             .then(res=>{
                 localStorage.setItem('access_token', res.data.access_token);
                 message.success("Successfully login");
-                router.push('/');
+                profileCtx.getCurrentUser();
+                if(router.pathname === '/views/admin/login'){
+                    router.push('/admin');
+                }else {
+                    router.push('/');
+                }
+
             })
             .catch((err: any)=>{
+                console.log(err)
                 message.error("Couldn't login");
             })
     };

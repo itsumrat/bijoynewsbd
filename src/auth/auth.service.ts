@@ -34,6 +34,8 @@ export class AuthService {
         const payload  =  await this.usersService.findByEmail(user.email);
         return {
             access_token: this.generateJwt({
+                id: payload.id,
+                username: payload.username,
                 name: payload.name,
                 domain: payload.domain,
                 email: payload.email,

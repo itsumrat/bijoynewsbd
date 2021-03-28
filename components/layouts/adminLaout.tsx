@@ -1,30 +1,57 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
-import { Layout, Menu } from 'antd';
+import {Dropdown, Layout, Menu} from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     ProfileOutlined,
     BookOutlined,
-    UploadOutlined,
     MailOutlined,
-    BellOutlined
+    UserOutlined
 } from '@ant-design/icons';
 import Link from "next/link";
+import {ProfileContext} from "../../context/ProfileContext";
+import {useRouter} from "next/router";
+
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => {
     const [collapsed, setCollapsed] = useState(false);
-
-
+    const profileCtx = useContext(ProfileContext);
+    const router = useRouter();
+    console.log(profileCtx.user);
     const toggle = () => {
         setCollapsed(prevState => !prevState)
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        router.push('/')
+    }
+    const profileMenu = (
+        <Menu>
+            <Menu.Item>
+                <a className="text-capitalize">
+                    {profileCtx.user && profileCtx.user.name}
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a className="text-capitalize">
+                    {profileCtx.user && profileCtx.user.role}
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a onClick={handleLogout}>
+                    Logout
+                </a>
+            </Menu.Item>
+        </Menu>
+    );
     return (
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={collapsed} style={{display: 'flex', flexDirection: 'column'}}>
                 <div className="logo" >
                     <h2 className="p-1 text-white">Bijoy News</h2>
                 </div>
@@ -52,7 +79,11 @@ const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => 
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    {/*<Menu.Item key="notifications" icon={<BellOutlined />}>Notifications</Menu.Item>*/}
+                </Menu>
+                <Menu className="mt-auto" theme="dark">
+                        <Menu.Item key="notifications" icon={<UserOutlined />}> <Dropdown overlay={profileMenu} placement="topRight" arrow>
+                            <a>Profile</a>
+                        </Dropdown></Menu.Item>
                 </Menu>
             </Sider>
             <Layout className="site-layout">

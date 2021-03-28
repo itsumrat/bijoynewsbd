@@ -1,6 +1,6 @@
 import {
     Column,
-    Entity, ManyToMany, JoinTable, ManyToOne,
+    Entity, ManyToMany, JoinTable, ManyToOne, OneToMany,
 
 } from 'typeorm';
 import {BaseEntity} from "../../utils/model/base.entity";
@@ -8,6 +8,8 @@ import {CategoryEntity} from "../../category/model/category.entity";
 import {CategoryEntry} from "../../category/interface/category.entry";
 import {UserInterface} from "../../user/interface/user.interface";
 import {UserEntity} from "../../user/model/user.entity";
+import {CommentEntity} from "../../comment/model/comment.entity";
+import {IComment} from "../../comment/interface/IComment";
 
 @Entity('story')
 export class StoryEntity extends BaseEntity{
@@ -52,4 +54,6 @@ export class StoryEntity extends BaseEntity{
     @JoinTable()
     category: CategoryEntry;
 
+    @OneToMany(() => CommentEntity, (comment: IComment) => comment)
+    comments: IComment[];
 }

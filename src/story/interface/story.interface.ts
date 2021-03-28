@@ -1,5 +1,6 @@
 import {CategoryEntry} from "../../category/interface/category.entry";
 import {UserInterface} from "../../user/interface/user.interface";
+import {IComment} from "../../comment/interface/IComment";
 
 export interface StoryInterface {
     id?: number;
@@ -15,4 +16,5 @@ export interface StoryInterface {
     publishedDate?: Date;
     isPublished?: boolean;
     category: CategoryEntry;
+    comments?: IComment[];
 }

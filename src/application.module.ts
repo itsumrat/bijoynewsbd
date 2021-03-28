@@ -23,6 +23,10 @@ import {UserEntity} from "./user/model/user.entity";
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { CommentModule } from './comment/comment.module';
+import {CommentService} from "./comment/service/comment.service";
+import {CommentEntity} from "./comment/model/comment.entity";
+import {CommentController} from "./comment/controller/comment.controller";
 
 
 
@@ -48,14 +52,15 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    TypeOrmModule.forFeature([CategoryEntity, StoryEntity, UserEntity]),
+    TypeOrmModule.forFeature([CategoryEntity, StoryEntity, UserEntity, CommentEntity]),
     CategoryModule,
     AdminModule,
     StoryModule,
     UserModule,
     AuthModule,
+    CommentModule,
   ],
-  controllers: [AppController, BlogController, CategoryController, AdminController, StoryController, UserController, AuthController],
-  providers: [BlogService, CategoryService, AdminService, StoryService, UserService, AuthService],
+  controllers: [AppController, BlogController, CategoryController, AdminController, StoryController, UserController, AuthController, CommentController],
+  providers: [BlogService, CategoryService, AdminService, StoryService, UserService, AuthService, CommentService],
 })
 export class AppModule {}

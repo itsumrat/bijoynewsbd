@@ -17,6 +17,9 @@ export class UserEntity {
   @Column({ unique: true })
   name: string;
 
+  @Column({ default: '' })
+  username: string;
+
   @Column({ unique: true, nullable: false, default: '' })
   domain: string;
 

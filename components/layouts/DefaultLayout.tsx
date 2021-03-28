@@ -47,7 +47,7 @@ const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) 
                 </div>
             </div>
         </header>
-        <Navbar expand="lg" style={{background: 'white'}}>
+        <Navbar expand="lg" style={{background: 'white'}} className="container">
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <ul className="navbar-nav" >

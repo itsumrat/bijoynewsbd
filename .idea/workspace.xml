@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e87618bb-67f4-4383-a1b3-22fa07e7288a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/auth/LoginComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/auth/LoginComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/head.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/head.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layouts/adminLaout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layouts/adminLaout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/application.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/story/controller/story.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/controller/story.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/story/interface/story.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/interface/story.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/story/model/story.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/model/story.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/story/service/story.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/service/story.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/controller/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/controller/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/interface/user.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/interface/user.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/model/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/model/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layouts/DefaultLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layouts/DefaultLayout.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +102,7 @@
       <workItem from="1616436877863" duration="8607000" />
       <workItem from="1616609315030" duration="3658000" />
       <workItem from="1616906491160" duration="15620000" />
-      <workItem from="1616947988279" duration="3739000" />
+      <workItem from="1616947988279" duration="5433000" />
     </task>
     <servers />
   </component>

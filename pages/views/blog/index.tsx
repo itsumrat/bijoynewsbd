@@ -33,7 +33,6 @@ const Blog: NextPage<Props> = ({ posts, source }) => {
 // documentation about how getServerSideProps only runs on the server:
 // https://nextjs.org/docs/basic-features/data-fetching#only-runs-on-server-side
 export async function getServerSideProps(ctx: NextPageContext) {
-    console.log(ctx.query)
   const props: Props = {
     source: 'server',
     posts: ctx.query.posts as any,

@@ -8,8 +8,6 @@ dotenv.config({
 });
 
 async function bootstrap() {
-  console.log(path.resolve(__dirname, `../.env.${process.env.NODE_ENV}`))
-  console.log(process.env.DATABASE_HOST)
   const server = await NestFactory.create(AppModule);
 
   await server.listen(3000);

@@ -11,7 +11,6 @@ interface Props {
 
 
 const EditStoryPage: React.FC<any> = ({categories, story}) => {
-    console.log(story);
     return   (<div>
         <NewStoryComponent categories={categories} isEdit={true} story={story}/>
     </div>)

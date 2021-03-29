@@ -21,7 +21,7 @@ const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => 
     const [collapsed, setCollapsed] = useState(false);
     const profileCtx = useContext(ProfileContext);
     const router = useRouter();
-    console.log(profileCtx.user);
+
     const toggle = () => {
         setCollapsed(prevState => !prevState)
     };

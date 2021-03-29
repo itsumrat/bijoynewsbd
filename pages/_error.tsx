@@ -5,8 +5,6 @@ import * as React from "react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export default function Page({ errorCode}) {
-    console.log('errorCode')
-    console.log(errorCode)
     if (errorCode) {
         return (
             <p>

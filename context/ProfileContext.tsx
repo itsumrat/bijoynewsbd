@@ -54,10 +54,9 @@ export const ProfileProvider = ({children}: any) =>{
                     // @ts-ignore
                     httpClient.get(`${constants.BASE_URL}/user/${decodedToken.id}`)
                         .then(r =>{
-                            console.log(r)
                             setUser(r.data);
                         })
-                        .catch(e=>console.log(e))
+                        .catch(e=>{})
                 }
             } catch (e) {
                 return null;

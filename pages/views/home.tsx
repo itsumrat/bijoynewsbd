@@ -13,11 +13,10 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({stories}) => {
-    console.log(stories)
 
     const defaultLayoutContext = useContext(DefaultLayoutContext);
     const categories = defaultLayoutContext.categories;
-    console.log(categories)
+
     return (
         <div>
             <Head

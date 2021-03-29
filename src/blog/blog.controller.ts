@@ -14,7 +14,6 @@ export class BlogController {
   @Render('blog')
   @Get()
   public index() {
-    console.log(this.service.all() )
     return { posts: this.service.all() };
   }
 

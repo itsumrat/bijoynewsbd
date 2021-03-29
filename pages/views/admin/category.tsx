@@ -51,14 +51,11 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
             });
            await response.json()
                 .then(r=>{
-                    console.log(r);
                     setCategoriesData(prevState => [
                         ...prevState, r
                     ]);
                 })
-               .catch(err=>{
-                   console.log(err)
-               })
+               .catch(err=>{ })
         },
     });
 
@@ -83,7 +80,7 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
             });
             await response.json()
                 .then(r=>{
-                    console.log(r);
+
                     const ind  = categoriesData.findIndex(cat=>cat.id === selectecCategory.id);
                     setCategoriesData(prevState => {
                         prevState[ind] = {...values, id: selectecCategory.id};
@@ -94,7 +91,6 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
                 })
                 .catch(err=>{
                     ToasterError("Couldn't update");
-                    console.log(err)
                 })
         },
     });
@@ -104,19 +100,15 @@ const AdminCategoriesPage:React.FC<Props> = ({categories}) => {
     },[selectecCategory])
 
     const handleDelete = (id: number) =>{
-        console.log(id)
         httpClient.delete(`/category/${id}`)
             .then(res=>{
                 setCategoriesData(prevState => prevState.filter((category)=>category.id !== id));
                 ToasterSuccess('Successfully deleted');
             })
             .catch(err=>{
-                console.log(err);
                 ToasterError("Couldn't delete");
             });
     }
-    console.log(isAuthenticated());
-    console.log(isAdmin());
     if(!isAuthenticated() || !isAdmin()){
         return (
             <Result

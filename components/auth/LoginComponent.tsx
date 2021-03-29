@@ -30,14 +30,11 @@ const LoginPage = () => {
 
             })
             .catch((err: any)=>{
-                console.log(err)
                 message.error("Couldn't login");
             })
     };
 
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
+    const onFinishFailed = (errorInfo: any) => {};
     return(
         <div className="d-flex flex-column justify-content-center align-items-center vh-100 vw-100">
             <Row>

@@ -10,18 +10,16 @@ import isAdmin from "../../../src/utils/isAdmin";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const Posts: React.FC = ({stories}) => {
-    console.log(stories);
     const [storiesData, setStoriesData] = useState(stories);
 
     const  confirm =(e: any)=> {
-        console.log(e);
+
         httpClient.delete(`/stories/${e.id}`)
             .then((res:any)=>{
                 setStoriesData((previousState: any[])=>  previousState.filter(s=>s.id !== e.id));
                 message.success('Successfully deleted');
             })
             .catch(err=>{
-                console.log(err);
                 message.error('Click on No');
             })
 

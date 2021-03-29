@@ -141,15 +141,15 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                 formData.append('file', file);
                 httpClient.post('/stories/image/upload', formData)
                     .then(r=>{
-                        console.log(r);
+
                         httpClient.put(`/stories/${story.id}`, {...values, featuredImg: r.data.Location, isPublished: true})
                             .then(res=>{
-                                console.log(res)
+
                                 message.success('Successfully updated')
                             })
                     })
                     .catch(e=>{
-                        console.log(e);
+
                     })
             }else {
                 httpClient.put(`/stories/${story.id}`, {...values, isPublished: true})
@@ -157,7 +157,7 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                         message.success('Successfully updated')
                     }).
                     catch(er=>{
-                        console.log({er});
+
                 })
             }
         }else {
@@ -172,7 +172,7 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                             })
                     })
                     .catch(e=>{
-                        console.log(e);
+
                     })
             }else {
                 httpClient.post('/stories', {...values, isPublished: true})
@@ -185,7 +185,6 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
     const handleDraft = ()=> {
         formikStory.validateForm().then(res=>{
             if(Object.keys(res).length === 0 ){
-                console.log(res)
                 if(isEdit){
                     if(file){
                         const formData = new FormData();
@@ -194,12 +193,10 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                             .then(r=>{
                                 httpClient.put(`/stories/${story.id}`, {...formikStory.values, featuredImg: r.data.Location, isPublished: false})
                                     .then(res=>{
-                                        console.log(res)
                                         message.success('Successfully updated')
                                     })
                             })
                             .catch(e=>{
-                                console.log(e);
                             })
                     }else {
                         httpClient.put(`/stories/${story.id}`, {...formikStory.values, isPublished: false})
@@ -207,7 +204,6 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                                 message.success('Successfully updated')
                             }).
                         catch(er=>{
-                            console.log({er});
                         })
                     }
                 }else {
@@ -222,7 +218,6 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                                  })
                          })
                          .catch(e=>{
-                             console.log(e);
                          })
                  }else {
                      httpClient.post('/stories', {...formikStory.values, isPublished: false})
@@ -314,7 +309,6 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                                             options={categoryOptions}
                                             value={formikStory.values.category}
                                             onChange={(category: { id: number; label: string; }) => {
-                                                console.log(category)
                                                 formikStory.setFieldValue('category', {
                                                     id: category.id,
                                                     name: category.label,

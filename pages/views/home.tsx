@@ -31,7 +31,7 @@ const Home: NextPage<Props> = ({stories}) => {
                             <div className="col-lg-6">
                                 <div className="article-preview-left">
                                     <div className="card">
-                                        <img src={stories[0].featuredImg || "/static/img/pic.jpg"}
+                                        <img style={{height: '285px'}} src={stories[0].featuredImg || "/static/img/pic.jpg"}
                                              className="card-img-top" alt={stories[0].title || ''}/>
                                         <div className="card-body">
                                             <Link href={`/news/${stories[0].category.name}/${stories[0].slug}`}>
@@ -51,7 +51,7 @@ const Home: NextPage<Props> = ({stories}) => {
                                     <div key={story.id} className="col-lg-6">
                                         <div className="article-preview-right">
                                             <div className="card">
-                                                <img src={story.featuredImg || "/static/img/pic.jpg"}
+                                                <img style={{height: '150px'}} src={story.featuredImg || "/static/img/pic.jpg"}
                                                      className="card-img-top" alt={story.title}/>
                                                 <div className="card-body">
                                                     <p className="article-preview-title">

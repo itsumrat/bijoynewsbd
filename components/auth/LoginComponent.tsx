@@ -16,12 +16,12 @@ const LoginPage = () => {
     const router = useRouter();
     const profileCtx = useContext(ProfileContext);
 
-    const onFinish = (values: any) => {
+    const onFinish =  (values: any) => {
         httpClient.post('/auth/login', values)
-            .then(res=>{
+            .then(async res =>{
                 localStorage.setItem('access_token', res.data.access_token);
                 message.success("Successfully login");
-                profileCtx.getCurrentUser();
+               await profileCtx.getCurrentUser();
                 if(router.pathname === '/views/admin/login'){
                     router.push('/admin');
                 }else {

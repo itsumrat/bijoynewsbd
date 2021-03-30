@@ -31,13 +31,6 @@ export const ProfileProvider = ({children}: any) =>{
     const [user, setUser] = useState<any>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect(()=>{
-        setIsLoggedIn(isAuthenticated())
-        if(isAuthenticated()){
-            getCurrentUser();
-        }
-    },[])
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const getCurrentUser = () =>{
@@ -64,6 +57,14 @@ export const ProfileProvider = ({children}: any) =>{
         }
         return  null
     }
+
+    useEffect(()=>{
+        setIsLoggedIn(isAuthenticated())
+        if(isAuthenticated()){
+            getCurrentUser();
+        }
+    },[]);
+
 
     const setUserData = (values: any) => {
         setUser(values);

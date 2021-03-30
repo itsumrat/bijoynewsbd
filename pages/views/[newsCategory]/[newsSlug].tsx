@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {NextPage} from "next";
 import {
     EmailShareButton,
@@ -18,6 +18,7 @@ import Head from "../../../components/head";
 import {IComment} from "../../../src/comment/interface/IComment";
 import httpClient from "../../../src/utils/httpClient";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons/lib";
+import {ProfileContext} from "../../../context/ProfileContext";
 
 const layout = {
     labelCol: { span: 24 },
@@ -30,6 +31,7 @@ const SingleNews: NextPage<any> = ({story, category, comments}) => {
     const [editComment, setEditComment] = useState(false);
     const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
+    const profileCtx = useContext(ProfileContext);
     const showDrawer = () => {
         setVisible(true);
     };
@@ -185,13 +187,16 @@ const SingleNews: NextPage<any> = ({story, category, comments}) => {
                             <Input.TextArea  />
                         </Form.Item>
                         <Form.Item wrapperCol={{ ...layout.wrapperCol }}>
-                            <Button type="primary" htmlType="submit">
+                            <Button disabled={!profileCtx.isLoggedIn && profileCtx.user === null} type="primary" htmlType="submit">
                                 Submit
                             </Button>
                         </Form.Item>
                     </Form>
                     {
+
                         tempComments.map((com: IComment,i: number)=>{
+                            console.log(profileCtx.user)
+                            console.log(com)
                             return(
                                 <Comment
                                     key={i}
@@ -207,14 +212,20 @@ const SingleNews: NextPage<any> = ({story, category, comments}) => {
                                             <p>
                                                 {com.message}
                                             </p>
-                                            <div className="d-flex">
-                                                <EditOutlined onClick={()=>{
-                                                    setSelectedComment(com);
-                                                    form.setFieldsValue({message: com.message})
-                                                    setEditComment(true);
-                                                }} className="mr-4"/>
-                                                <DeleteOutlined onClick={()=>deleteComment(com.id)} />
-                                            </div>
+                                            {
+                                                profileCtx.isLoggedIn  && profileCtx.user && profileCtx.user.id === com.author.id &&
+                                                (
+                                                    <div className="d-flex">
+                                                        <EditOutlined onClick={()=>{
+                                                            setSelectedComment(com);
+                                                            form.setFieldsValue({message: com.message})
+                                                            setEditComment(true);
+                                                        }} className="mr-4"/>
+                                                        <DeleteOutlined onClick={()=>deleteComment(com.id)} />
+                                                    </div>
+                                                )
+                                            }
+
                                         </div>
                                     }
                                     datetime={

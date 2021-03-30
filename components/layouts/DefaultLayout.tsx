@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Navbar} from 'react-bootstrap';
 import Link from "next/link";
 import httpClient from "../../src/utils/httpClient";
 import moment from 'moment';
+import {ProfileContext} from "../../context/ProfileContext";
 
 interface IDefaultLayout {
     categories: any[];
@@ -15,13 +16,15 @@ export const DefaultLayoutContext = React.createContext<IDefaultLayout>(
 
 const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) => {
     const [categories, setCategories] = useState([]);
-    ;
+    const profileCtx = useContext(ProfileContext);
     const getCategories = () => {
         httpClient.get('/category')
             .then(res => {
+                console.log(res);
                 setCategories(res.data);
             })
             .catch(err => {
+                console.log(err);
             })
     }
     useEffect(() => {
@@ -39,9 +42,17 @@ const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) 
                     </Link>
                 </div>
                 <div>
-                    <Link href='/login'>
-                        <a>Login</a>
-                    </Link>
+                    {
+                        profileCtx.isLoggedIn ? (
+                            <div className="font-weight-bold text-capitalize">
+                                {profileCtx.user && profileCtx.user.name}
+                            </div>
+                        ): (
+                            <Link href='/login'>
+                                <a>Login</a>
+                            </Link>
+                        )
+                    }
                 </div>
             </div>
         </header>

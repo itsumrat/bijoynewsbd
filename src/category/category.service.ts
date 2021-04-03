@@ -38,7 +38,7 @@ export class CategoryService {
 
 
         const queryBuilder = this.categoryEntityRepository.createQueryBuilder('categories');
-        queryBuilder.orderBy('categories.id', 'DESC'); // Or whatever you need to do
+        // queryBuilder.orderBy('categories.id', 'DESC'); // Or whatever you need to do
             queryBuilder.leftJoinAndSelect("categories.stories", "story" )
         return paginate<any>(queryBuilder, options);
      // return paginate<any>(this.categoryEntityRepository, options, {relations: ['stories'], });

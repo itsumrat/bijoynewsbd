@@ -20,7 +20,6 @@ const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) 
     const getCategories = () => {
         httpClient.get('/category')
             .then(res => {
-                console.log(res);
                 setCategories(res.data.items);
             })
             .catch(err => {

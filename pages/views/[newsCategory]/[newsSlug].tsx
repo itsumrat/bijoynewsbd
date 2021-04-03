@@ -195,8 +195,6 @@ const SingleNews: NextPage<any> = ({story, category, comments}) => {
                     {
 
                         tempComments.map((com: IComment,i: number)=>{
-                            console.log(profileCtx.user)
-                            console.log(com)
                             return(
                                 <Comment
                                     key={i}

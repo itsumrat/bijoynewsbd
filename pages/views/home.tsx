@@ -17,7 +17,6 @@ const Home: NextPage<Props> = ({stories}) => {
     const defaultLayoutContext = useContext(DefaultLayoutContext);
     const categories = defaultLayoutContext.categories;
     const storiesData = stories.items || [];
-    console.log(stories)
     return (
         <div>
             <Head

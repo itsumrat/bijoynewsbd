@@ -330,7 +330,7 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                                     <div className="mt-5">
                                         <Checkbox checked={formikStory.values.featured} onChange={(e)=>{
                                             formikStory.setFieldValue('featured', e.target.checked)
-                                        }}>Checkbox</Checkbox>
+                                        }}>Featured</Checkbox>
                                     </div>
                                     <div className="date mt-5">
                                         <label>Date</label>

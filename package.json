@@ -8,7 +8,7 @@
     "build:clean": "rimraf .next",
     "build:ui": "npx next build",
     "build:server": "npx tsc --project tsconfig.server.json && npx babel .next/production-server -d .next/production-server --extensions \".js\"",
-    "build": "yarn build:clean && yarn build:ui && yarn build:server",
+    "build": "npm run build:clean && npm run build:ui && npm run build:server",
     "start": "cross-env NODE_ENV=production node .next/production-server/src/main.js"
   },
   "dependencies": {

@@ -8,7 +8,7 @@ export class CategoryController {
 
     @Get()
     public findAll(@Query('page') page: number = 1,
-                   @Query('limit') limit: number = 4,){
+                   @Query('limit') limit: number = 100,){
         limit = limit > 100 ? 100 : limit;
         return this.categoryService.findAll({
             page,

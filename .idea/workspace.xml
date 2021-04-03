@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e87618bb-67f4-4383-a1b3-22fa07e7288a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/components/layouts/DefaultLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layouts/DefaultLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/[newsCategory]/[newsSlug].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/views/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views/home.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +103,7 @@
       <workItem from="1616947988279" duration="5433000" />
       <workItem from="1617196382265" duration="6092000" />
       <workItem from="1617443485363" duration="11121000" />
-      <workItem from="1617456469040" duration="108000" />
+      <workItem from="1617456469040" duration="403000" />
     </task>
     <servers />
   </component>

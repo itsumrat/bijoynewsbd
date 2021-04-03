@@ -23,7 +23,6 @@ const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) 
                 setCategories(res.data.items);
             })
             .catch(err => {
-                console.log(err);
             })
     }
     useEffect(() => {

@@ -1,17 +1,19 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../../components/layouts/adminLaout";
 import {NextPageContext} from "next";
-import {Table, Space, Button, Popconfirm, message, Result} from 'antd';
+import {Table, Space, Button, Popconfirm, message, Result, Pagination} from 'antd';
 import httpClient from "../../../src/utils/httpClient";
 import Link from "next/link";
 import isAuthenticated from "../../../src/utils/isAuthenticated";
 import isAdmin from "../../../src/utils/isAdmin";
+import {useRouter} from "next/router";
+import {constants} from "../../../constants";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const Posts: React.FC = ({stories}) => {
-    const [storiesData, setStoriesData] = useState(stories);
-
+    const [storiesData, setStoriesData] = useState(stories.items);
+    const router = useRouter()
     const  confirm =(e: any)=> {
 
         httpClient.delete(`/stories/${e.id}`)
@@ -25,6 +27,18 @@ const Posts: React.FC = ({stories}) => {
 
     }
 
+    const onChange = (page: any)=>{
+        router.push(`${constants.BASE_URL}/admin/posts?page=${page}&limit=10`)
+    }
+    const  itemRender =(current: any, type: string, originalElement: any) =>{
+        if (type === 'prev') {
+            return <Link href={stories.links.previous}><a>Prev</a></Link>;
+        }
+        if (type === 'next') {
+            return <Link href={stories.links.next}><a>Next</a></Link>;
+        }
+        return originalElement;
+    }
     const columns = [
         {
             title: 'Title',
@@ -76,7 +90,13 @@ const Posts: React.FC = ({stories}) => {
     return(
         <div>
             <h1>Posts</h1>
-            <Table key="id" columns={columns} dataSource={storiesData} />
+            <Table pagination={{current: stories.meta.currentPage,
+                total: stories.meta.totalItems,
+                pageSize: stories.meta.itemsPerPage,
+                itemRender,
+                onChange
+
+            }} key="id" columns={columns} dataSource={storiesData} />
         </div>
     );
 }

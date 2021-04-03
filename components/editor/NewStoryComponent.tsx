@@ -5,7 +5,7 @@ import TinyEditor from "./TinyEditor";
 import httpClient from "../../src/utils/httpClient";
 import { TweenOneGroup } from 'rc-tween-one';
 import { PlusOutlined } from '@ant-design/icons';
-import {Button, Upload, message, DatePicker, Tag, Input } from 'antd';
+import {Button, Upload, message, DatePicker, Tag, Input, Checkbox} from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import * as Yup from 'yup';
@@ -50,6 +50,7 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
             publishedDate: new Date(),
             tags: [],
             isPublished: false,
+            featured: false,
         },
         validationSchema: storySchema,
         onSubmit: values => {
@@ -73,9 +74,10 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
             formikStory.setFieldValue('featuredImg', story.featuredImg);
             setTags(story.tags)
             formikStory.setFieldValue('isPublished', story.isPublished);
+            formikStory.setFieldValue('featured', story.featured);
         }
 
-    },[isEdit]);
+    },[isEdit, story]);
 
     const handleClose = (removedTag: any) => {
         setTags(prevState=> prevState.filter((tag: any) => tag !== removedTag))
@@ -324,6 +326,11 @@ const NewStoryComponent: React.FC<any> = ({categories, isEdit, story}) => {
                                         <Upload multiple={false} {...props}>
                                             <Button icon={<UploadOutlined />}>Select File</Button>
                                         </Upload>
+                                    </div>
+                                    <div className="mt-5">
+                                        <Checkbox checked={formikStory.values.featured} onChange={(e)=>{
+                                            formikStory.setFieldValue('featured', e.target.checked)
+                                        }}>Checkbox</Checkbox>
                                     </div>
                                     <div className="date mt-5">
                                         <label>Date</label>

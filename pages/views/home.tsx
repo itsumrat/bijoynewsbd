@@ -8,7 +8,7 @@ import {useContext} from "react";
 import Head from 'components/head';
 
 interface Props {
-    stories: StoryInterface[];
+    stories: any;
     categories: any[]
 }
 
@@ -16,7 +16,8 @@ const Home: NextPage<Props> = ({stories}) => {
 
     const defaultLayoutContext = useContext(DefaultLayoutContext);
     const categories = defaultLayoutContext.categories;
-
+    const storiesData = stories.items || [];
+    console.log(stories)
     return (
         <div>
             <Head
@@ -27,17 +28,17 @@ const Home: NextPage<Props> = ({stories}) => {
             <div className="container mt-4">
                 <div className="row">
                     {
-                        stories.length > 0 && (
+                        storiesData.length > 0 && (
                             <div className="col-lg-6">
                                 <div className="article-preview-left">
                                     <div className="card">
-                                        <img style={{height: '285px'}} src={stories[0].featuredImg || "/static/img/pic.jpg"}
-                                             className="card-img-top" alt={stories[0].title || ''}/>
+                                        <img style={{height: '285px'}} src={storiesData[0].featuredImg || "/static/img/pic.jpg"}
+                                             className="card-img-top" alt={storiesData[0].title || ''}/>
                                         <div className="card-body">
-                                            <Link href={`/news/${stories[0].category.name}/${stories[0].slug}`}>
-                                                <a className="article-preview-title">{stories[0].title}</a>
+                                            <Link href={`/news/${storiesData[0].category.name}/${storiesData[0].slug}`}>
+                                                <a className="article-preview-title">{storiesData[0].title}</a>
                                             </Link>
-                                            <p className="article-preview-desc">{stories[0].description}</p>
+                                            <p className="article-preview-desc">{storiesData[0].description}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +48,7 @@ const Home: NextPage<Props> = ({stories}) => {
                     <div className="col-lg-6">
                         <div className="row">
                             {
-                                stories.slice(0, 4).map(story => (
+                                storiesData.slice(0, 4).map((story: StoryInterface) => (
                                     <div key={story.id} className="col-lg-6">
                                         <div className="article-preview-right">
                                             <div className="card">
@@ -87,7 +88,7 @@ const Home: NextPage<Props> = ({stories}) => {
                                     </div>)
                             }
                             {
-                                category.stories.map((story: any) => <StoryCard key={story.id} story={story}
+                                category.stories.slice(0,4).map((story: any) => <StoryCard key={story.id} story={story}
                                                                                 category={category.name}/>)
                             }
                         </div>

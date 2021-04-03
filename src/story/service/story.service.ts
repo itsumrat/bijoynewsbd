@@ -8,6 +8,15 @@ import {StoryEntity} from "../model/story.entity";
 import { S3 } from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';
 import {UserInterface} from "../../user/interface/user.interface";
+
+import {
+    paginate,
+    Pagination,
+    IPaginationOptions,
+} from 'nestjs-typeorm-paginate';
+
+
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
@@ -23,8 +32,32 @@ export class StoryService {
     private readonly storyEntityRepository: Repository<StoryEntity>
     ){}
 
-    getStories(){
-        return this.storyEntityRepository.find({relations: ['category']});
+    // getStories(){
+    //     return this.storyEntityRepository.find({relations: ['category']});
+    // }
+
+    async getStories(options: IPaginationOptions, featured = false): Promise<Pagination<StoryEntity>> {
+        // const queryBuilder = this.storyEntityRepository.createQueryBuilder('s', );
+        // queryBuilder.relation('category') // Or whatever you need to do
+        if(featured){
+            return  paginate<StoryEntity>(this.storyEntityRepository, options, {
+                relations: ['category'],
+                where: {
+                    featured: true
+                },
+                order: {
+                    id: "DESC"
+                }
+            });
+        }else {
+            return  paginate<StoryEntity>(this.storyEntityRepository, options, {
+                relations: ['category'],
+                order:{
+                    id: "DESC"
+                }
+            })
+        }
+        // return paginate<StoryEntity>(queryBuilder, options);
     }
 
     findOne(id: number){
@@ -41,9 +74,10 @@ export class StoryService {
         return this.storyEntityRepository.save(body);
     }
 
-    updateOne(id: number, body: StoryInterface){
-        body.slug = this.generateSlug(body.title)
-        return this.storyEntityRepository.save({id, ...body});
+    updateOne(id: number, body: StoryInterface,user: UserInterface ){
+        body.author = user;
+        body.slug = this.generateSlug(body.title);
+        return this.storyEntityRepository.update(id,body);
     }
 
     deleteOne(id: number){

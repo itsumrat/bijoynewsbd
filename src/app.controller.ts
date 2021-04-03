@@ -1,8 +1,9 @@
-import {Controller, Get, Param, Query, Render} from '@nestjs/common';
+import {Controller, Get, Param, Query, Render, HttpException, HttpStatus} from '@nestjs/common';
 import {StoryService} from "./story/service/story.service";
 import {CategoryService} from "./category/category.service";
 import {CommentService} from "./comment/service/comment.service";
 import {IComment} from "./comment/interface/IComment";
+import {constants} from "../constants";
 
 @Controller()
 export class AppController {
@@ -14,14 +15,24 @@ export class AppController {
 
   @Render('home')
   @Get()
-  public async index() {
-    let stories: any = [];
+  public async index(@Query('page') page: number = 1,
+                     @Query('limit') limit: number = 10,) {
+      limit = limit > 100 ? 100 : limit;
+    let stories: any = {};
     let categories: any = [];
-    await this.storyService.getStories()
+    await this.storyService.getStories({
+        page,
+        limit,
+        route: constants.BASE_URL,
+    }, true)
         .then(res=>{
           stories = res;
         });
-    await this.categoryService.findAll()
+    await this.categoryService.findAll({
+        page,
+        limit,
+        route: constants.BASE_URL,
+    })
         .then(cats=>{
             categories = cats;
         })
@@ -60,18 +71,27 @@ export class AppController {
   public async News(@Param() param: any) {
     let story: any={};
     let category: any = {};
-    let comments: IComment[];
-    await this.storyService.findBySlug(param.slug).then(r=>{
-      story = r;
-    });
-    await this.categoryService.findOne(param.category)
-        .then((res: any)=>{
-            category = res;
+    let comments: IComment[] = [];
+
+    try {
+        await this.storyService.findBySlug(param.slug).then(r=>{
+            story = r;
         });
-    await this.commentService.findAllComments(story.id)
-        .then((re:any)=>{
-            comments = re;
-        })
+        await this.categoryService.findOne(param.category)
+            .then((res: any)=>{
+                category = res;
+            });
+        await this.commentService.findAllComments(story.id)
+            .then((re:any)=>{
+                comments = re;
+            })
+    }catch (e) {
+        throw new HttpException(
+            "Couldn't found",
+            HttpStatus.NOT_FOUND,
+        );
+    }
+
 
 
    return {

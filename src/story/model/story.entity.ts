@@ -1,6 +1,6 @@
 import {
     Column,
-    Entity, ManyToMany, JoinTable, ManyToOne, OneToMany,
+    Entity, JoinTable, ManyToOne, OneToMany,
 
 } from 'typeorm';
 import {BaseEntity} from "../../utils/model/base.entity";
@@ -31,6 +31,9 @@ export class StoryEntity extends BaseEntity{
 
     @Column({ nullable: true })
     featuredImg: string;
+
+    @Column({default: false})
+    featured: boolean;
 
     @Column('simple-array', { default: [] })
     tags: string[];

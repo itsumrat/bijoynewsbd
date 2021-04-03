@@ -12,6 +12,7 @@ export interface StoryInterface {
     updatedAt?: Date;
     likes?: number;
     featuredImg?: string;
+    featured?: boolean;
     author?: UserInterface;
     publishedDate?: Date;
     isPublished?: boolean;

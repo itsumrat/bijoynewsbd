@@ -47,7 +47,7 @@ const Home: NextPage<Props> = ({stories}) => {
                     <div className="col-lg-6">
                         <div className="row">
                             {
-                                storiesData.slice(1, 5).map((story: StoryInterface) => (
+                                storiesData.length > 1 && storiesData.slice(1, 5).map((story: StoryInterface) => (
                                     <div key={story.id} className="col-lg-6">
                                         <div className="article-preview-right">
                                             <div className="card">

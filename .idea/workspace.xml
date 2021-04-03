@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e87618bb-67f4-4383-a1b3-22fa07e7288a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/story/service/story.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/service/story.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +104,7 @@
       <workItem from="1616947988279" duration="5433000" />
       <workItem from="1617196382265" duration="6092000" />
       <workItem from="1617443485363" duration="11121000" />
-      <workItem from="1617456469040" duration="4290000" />
+      <workItem from="1617456469040" duration="5086000" />
     </task>
     <servers />
   </component>

@@ -87,7 +87,7 @@ const Home: NextPage<Props> = ({stories}) => {
                                     </div>)
                             }
                             {
-                                category.stories.slice(0,4).map((story: any) => <StoryCard key={story.id} story={story}
+                                category.stories.reverse().slice(0,4).map((story: any) => <StoryCard key={story.id} story={story}
                                                                                 category={category.name}/>)
                             }
                         </div>

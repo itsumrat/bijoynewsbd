@@ -44,12 +44,12 @@ export class CategoryService {
     findAll(options: IPaginationOptions): Promise<Pagination<StoryEntity>>{
 
 
-        const queryBuilder = this.categoryEntityRepository.createQueryBuilder('categories');
-        // queryBuilder.orderBy('categories.id', 'DESC'); // Or whatever you need to do
-            queryBuilder.leftJoinAndSelect("categories.stories", "story" )
-            queryBuilder.orderBy('story.id', 'DESC')
-        return paginate<any>(queryBuilder, options);
-     // return paginate<any>(this.categoryEntityRepository, options, {relations: ['stories'], });
+        // const queryBuilder = this.categoryEntityRepository.createQueryBuilder('categories');
+        // // queryBuilder.orderBy('categories.id', 'DESC'); // Or whatever you need to do
+        //     queryBuilder.leftJoinAndSelect("categories.stories", "story" )
+        //     // queryBuilder.orderBy('story.id', 'DESC')
+        // return paginate<any>(queryBuilder, options);
+     return paginate<any>(this.categoryEntityRepository, options, {relations: ['stories'], });
 
     }
 }

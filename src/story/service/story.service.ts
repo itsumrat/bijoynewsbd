@@ -22,7 +22,7 @@ const path = require('path');
 
 
 const slugify = (str: string)=>{
-    return str.replace(/[\W_]/g, "-")
+    return str.replace(/\s/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-')
 }
 
 @Injectable()

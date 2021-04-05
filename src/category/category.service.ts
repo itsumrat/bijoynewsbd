@@ -13,13 +13,20 @@ export class CategoryService {
     ){}
 
 
-    findOne(name: string): any{
-        return this.categoryEntityRepository.findOne({name},{
-            relations: ['stories'],
-            order: {
-                id: "DESC"
-            }
-        });
+    async findOne(name: string): Promise<any>{
+        return await this.categoryEntityRepository
+            .createQueryBuilder("category") // first argument is an alias. Alias is what you are selecting - categorys. You must specify it.
+            .where("category.name = :name", { name })
+            .leftJoinAndSelect("category.stories", "story")
+            .orderBy("story.id", "DESC")
+            .getOne();
+
+        // return this.categoryEntityRepository.findOne({name},{
+        //     relations: ['stories'],
+        //     order: {
+        //         stories:1
+        //     }
+        // });
     }
     create (body: any): any{
 
@@ -40,6 +47,7 @@ export class CategoryService {
         const queryBuilder = this.categoryEntityRepository.createQueryBuilder('categories');
         // queryBuilder.orderBy('categories.id', 'DESC'); // Or whatever you need to do
             queryBuilder.leftJoinAndSelect("categories.stories", "story" )
+            queryBuilder.orderBy('story.id', 'DESC')
         return paginate<any>(queryBuilder, options);
      // return paginate<any>(this.categoryEntityRepository, options, {relations: ['stories'], });
 

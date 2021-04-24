@@ -6,7 +6,7 @@ import {StoryInterface} from "../../src/story/interface/story.interface";
 import DefaultLayout, {DefaultLayoutContext} from "../../components/layouts/DefaultLayout";
 import {useContext} from "react";
 import Head from 'components/head';
-
+import  { orderBy} from 'lodash'
 interface Props {
     stories: any;
     categories: any[]
@@ -87,7 +87,7 @@ const Home: NextPage<Props> = ({stories}) => {
                                     </div>)
                             }
                             {
-                                category.stories.reverse().slice(0,4).map((story: any) => <StoryCard key={story.id} story={story}
+                                orderBy(category.stories, ['id'] , ['desc']).slice(0,4).map((story: any) => <StoryCard key={story.id} story={story}
                                                                                 category={category.name}/>)
                             }
                         </div>

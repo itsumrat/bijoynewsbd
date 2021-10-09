@@ -39,7 +39,7 @@ export class AppController {
     return { stories, categories };
   }
 
-
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   @Render('category')
   @Get('news/:category')
   public async Category(@Param('category') cat: string) {

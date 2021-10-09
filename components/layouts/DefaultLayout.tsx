@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Navbar} from 'react-bootstrap';
+import {Navbar, Dropdown} from 'react-bootstrap';
 import Link from "next/link";
 import httpClient from "../../src/utils/httpClient";
 import moment from 'moment';
@@ -59,12 +59,32 @@ const DefaultLayout: React.FC = ({children}: { children: React.ReactChildren }) 
             <Navbar.Collapse id="basic-navbar-nav">
                 <ul className="navbar-nav" >
                     {
-                        categories.map(category => (<li key={category.id} className="nav-item active">
+                        categories.slice(0,9).map(category => (<li key={category.id} className="nav-item active">
                             <Link href={`/news/${category.name}`}>
                                 <a className="nav-link">{category.name}</a>
                             </Link>
                         </li>))
                     }
+                    <li>
+                    <Dropdown>
+                        <Dropdown.Toggle style={{color: '#029E74'}} className="font-weight-bold mt-1" variant="" id="dropdown-basic">
+                            আরো 
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            {
+                                categories.slice(9,categories.length - 1 ).map((category)=>(
+                                    <Dropdown.Item as="div" key={category.id}>
+                                        <Link href={`/news/${category.name}`}>
+                                            <a className="nav-link">{category.name}</a>
+                                        </Link>
+                                    </Dropdown.Item>
+                                ))
+                            }
+                            
+                        </Dropdown.Menu>
+                        </Dropdown>
+                    </li>
                 </ul>
             </Navbar.Collapse>
         </Navbar>

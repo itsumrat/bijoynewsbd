@@ -1,3 +1,4 @@
+import { AdvertiseEntity } from './advertise/model/advertise.entity';
 import { Module } from '@nestjs/common';
 import { RenderModule } from 'nest-next';
 import Next from 'next';
@@ -27,6 +28,9 @@ import { CommentModule } from './comment/comment.module';
 import {CommentService} from "./comment/service/comment.service";
 import {CommentEntity} from "./comment/model/comment.entity";
 import {CommentController} from "./comment/controller/comment.controller";
+import { AdvertiseController } from './advertise/advertise.controller';
+import { AdvertiseService } from './advertise/advertise.service';
+import { AdvertiseModule } from './advertise/advertise.module';
 
 
 
@@ -42,8 +46,8 @@ import {CommentController} from "./comment/controller/comment.controller";
     ),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'bijoynews-database.cnwhvy4mvhdr.ap-southeast-1.rds.amazonaws.com',
-      // host: 'localhost',
+      // host: 'bijoynews-database.cnwhvy4mvhdr.ap-southeast-1.rds.amazonaws.com',
+      host: 'localhost',
       port: 5432,
       username: 'bijoynews',
       password: 'bijoynews',
@@ -52,15 +56,16 @@ import {CommentController} from "./comment/controller/comment.controller";
       synchronize: true,
       autoLoadEntities: true,
     }),
-    TypeOrmModule.forFeature([CategoryEntity, StoryEntity, UserEntity, CommentEntity]),
+    TypeOrmModule.forFeature([CategoryEntity, StoryEntity, UserEntity, CommentEntity, AdvertiseEntity]),
     CategoryModule,
     AdminModule,
     StoryModule,
     UserModule,
     AuthModule,
     CommentModule,
+    AdvertiseModule,
   ],
-  controllers: [AppController, BlogController, CategoryController, AdminController, StoryController, UserController, AuthController, CommentController],
-  providers: [BlogService, CategoryService, AdminService, StoryService, UserService, AuthService, CommentService],
+  controllers: [AppController, BlogController, CategoryController, AdminController, StoryController, UserController, AuthController, CommentController, AdvertiseController],
+  providers: [BlogService, CategoryService, AdminService, StoryService, UserService, AuthService, CommentService, AdvertiseService],
 })
 export class AppModule {}

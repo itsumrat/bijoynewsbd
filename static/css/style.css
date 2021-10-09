@@ -194,6 +194,12 @@ header .top-header div {
 .article-preview-left .card .article-preview-title a:hover {
     text-decoration: none;
 }
+.article-preview-desc{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 .article-preview-left .card .article-preview-desc {
     font-family: SolaimanLipi;
     font-size: 16px;

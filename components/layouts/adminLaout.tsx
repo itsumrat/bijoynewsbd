@@ -61,7 +61,6 @@ const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => 
                           <a >Categories</a>
                       </Link>
                     </Menu.Item>
-
                     {/*<Menu.Item key="3" icon={<UploadOutlined />}>*/}
                     {/*    <Link href="/">*/}
                     {/*        <a>Not yet</a>*/}
@@ -79,6 +78,11 @@ const AdminLayout: React.FC =({children}: { children: React.ReactChildren }) => 
                             </Link>
                         </Menu.Item>
                     </SubMenu>
+                    <Menu.Item key="advertise" icon={<ProfileOutlined />}>
+                      <Link href="/admin/advertise">
+                          <a >Advertise</a>
+                      </Link>
+                    </Menu.Item>
                 </Menu>
                 <Menu className="mt-auto" theme="dark">
                         <Menu.Item key="notifications" icon={<UserOutlined />}> <Dropdown overlay={profileMenu} placement="topRight" arrow>

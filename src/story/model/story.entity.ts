@@ -1,6 +1,7 @@
+import { AdvertiseEntity } from './../../advertise/model/advertise.entity';
 import {
     Column,
-    Entity, JoinTable, ManyToOne, OneToMany,
+    Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne,
 
 } from 'typeorm';
 import {BaseEntity} from "../../utils/model/base.entity";
@@ -59,4 +60,8 @@ export class StoryEntity extends BaseEntity{
 
     @OneToMany(() => CommentEntity, (comment: IComment) => comment)
     comments: IComment[];
+
+    @OneToOne(() => AdvertiseEntity)
+    @JoinColumn()
+    advertise: AdvertiseEntity;
 }

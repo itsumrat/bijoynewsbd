@@ -90,6 +90,26 @@ const Home: NextPage<Props> = ({stories}) => {
                                 orderBy(category.stories, ['id'] , ['desc']).slice(0,4).map((story: any) => <StoryCard key={story.id} story={story}
                                                                                 category={category.name}/>)
                             }
+
+
+                            <div className="col-12">
+                                <div className="row">
+                                    <div className="col-md-6 col-sm-12"> 
+                                        <div className="card">
+                                            <div className="card-body">
+                                                add 1
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 col-sm-12"> 
+                                        <div className="card">
+                                            <div className="card-body">
+                                                add 2
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     ))
                 }
